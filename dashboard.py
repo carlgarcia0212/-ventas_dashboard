@@ -48,10 +48,17 @@ filtro = data[
 # KPIs
 # =====================
 # ==== KPIs mejorados ====
+# ==== KPIs con títulos mejorados ====
 st.markdown(
     """
     <style>
-    .big-font {
+    .kpi-title {
+        font-size:20px;
+        font-weight: bold;
+        color: #00FFFF; /* cian brillante */
+        margin-bottom: 5px;
+    }
+    .kpi-value {
         font-size:40px !important;
         font-weight: bold;
         color: #FFFFFF;
@@ -61,7 +68,7 @@ st.markdown(
         padding: 20px;
         border-radius: 12px;
         text-align: center;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.6);
     }
     </style>
     """,
@@ -70,11 +77,12 @@ st.markdown(
 
 kpi1, kpi2, kpi3 = st.columns(3)
 with kpi1:
-    st.markdown(f"<div class='kpi-box'>Ventas Totales<br><span class='big-font'>${filtro['Ventas'].sum():,}</span></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='kpi-box'><div class='kpi-title'>Ventas Totales</div><div class='kpi-value'>${filtro['Ventas'].sum():,}</div></div>", unsafe_allow_html=True)
 with kpi2:
-    st.markdown(f"<div class='kpi-box'>Promedio Venta<br><span class='big-font'>${filtro['Ventas'].mean():,.0f}</span></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='kpi-box'><div class='kpi-title'>Promedio Venta</div><div class='kpi-value'>${filtro['Ventas'].mean():,.0f}</div></div>", unsafe_allow_html=True)
 with kpi3:
-    st.markdown(f"<div class='kpi-box'>Cantidad Total<br><span class='big-font'>{filtro['Cantidad'].sum():,}</span></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='kpi-box'><div class='kpi-title'>Cantidad Total</div><div class='kpi-value'>{filtro['Cantidad'].sum():,}</div></div>", unsafe_allow_html=True)
+
 
 
 # =====================
@@ -107,4 +115,5 @@ st.download_button(label="Descargar CSV", data=csv, file_name="ventas_filtradas.
 # =====================
 st.subheader("Datos filtrados")
 st.dataframe(filtro)
+
 
